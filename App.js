@@ -6,18 +6,28 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 function inicioScreen () {
   return (
     <View style={styles.inicio}>
-      <Text>Inicio</Text>
+      <Text>Pantalla De Inicio</Text>
+      <button title="Ir a RavenCLaw" onPress={() => navigation.navigate('RavenCLaw')} />
     </View>
   );
 }
 
 const Stack = createNativeStackNavigator();
 
+function RavenCLawScreen () {
+  return (
+    <View style={styles.inicio}>
+      <Text>RavenCLaw</Text>
+    </View>
+  );
+}
+
 export default function App () {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Inicio" component={inicioScreen} />
+        <Stack.Screen name="RavenCLaw" component={RavenCLawScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
