@@ -1,17 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
 export default function DetalleScreen({ route }) {
   const { pelicula } = route.params; // Desestructuración de señal
 
   return (
     <View style={styles.container}>
+      <Image source={pelicula.cartel} style={{ width: 200, height: 300, marginBottom: 20 }} />
       <Text style={styles.title}>{pelicula.titulo}</Text>
       <Text style={styles.subtitle}>Ciclo de Lanzamiento: {pelicula.anio}</Text>
       <View style={styles.synopsisBox}>
         <Text style={styles.synopsisText}>{pelicula.sinopsis}</Text>
       </View>
-    </View>
+    </View> 
   );
 }
 

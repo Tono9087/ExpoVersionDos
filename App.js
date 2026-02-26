@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import CarteleraScreen from './screens/CarteleraScreen';
 import DetalleScreen from './screens/DetalleScreen';
@@ -13,16 +14,20 @@ const Tab = createBottomTabNavigator();
 // SUB-NAVEGADOR: Pila de la Cartelera
 function CarteleraStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerStyle: { backgroundColor: '#06060b' }, headerTintColor: '#00ffff' }}>
-      <Stack.Screen 
-        name="CarteleraLista" 
-        component={CarteleraScreen} 
-        options={{ title: 'CARTELERA NADESICO' }} 
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: '#06060b' },
+        headerTintColor: '#00ffff',
+      }}>
+      <Stack.Screen
+        name="CarteleraLista"
+        component={CarteleraScreen}
+        options={{ title: 'CARTELERA NADESICO' }}
       />
-      <Stack.Screen 
-        name="Detalle" 
-        component={DetalleScreen} 
-        options={({ route }) => ({ title: route.params.pelicula.titulo })} 
+      <Stack.Screen
+        name="Detalle"
+        component={DetalleScreen}
+        options={({ route }) => ({ title: route.params.pelicula.titulo })}
       />
     </Stack.Navigator>
   );
@@ -32,16 +37,42 @@ function CarteleraStack() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator 
-        screenOptions={{ 
+      <Tab.Navigator
+        screenOptions={{
           headerShown: false,
-          tabBarStyle: { backgroundColor: '#06060b', borderTopColor: '#ff00ff' },
+          tabBarStyle: {
+            backgroundColor: '#06060b',
+            borderTopColor: '#ff00ff',
+          },
           tabBarActiveTintColor: '#ff00ff',
-          tabBarInactiveTintColor: '#00ffff'
-        }}
-      >
-        <Tab.Screen name="Misión: Cine" component={CarteleraStack} />
-        <Tab.Screen name="Archivo: Perfil" component={PerfilScreen} />
+          tabBarInactiveTintColor: '#00ffff',
+        }}>
+        <Tab.Screen
+          name="Misión: Cine"
+          component={CarteleraStack}
+          options={{
+            tabBarIcon: ({ color, focused }) => (
+              <Ionicons
+                name={focused ? 'movie' : 'film-outline'}
+                color={color}
+                size={28}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Archivo: Perfil"
+          component={PerfilScreen}
+          options={{
+            tabBarIcon: ({ color, focused }) => (
+              <Ionicons
+                name={focused ? 'person' : 'person-outline'}
+                color={color}
+                size={28}
+              />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
